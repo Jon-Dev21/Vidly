@@ -1,0 +1,38 @@
+﻿@* Customers Index View *@
+@* Specifying type of model for this view*@
+@model Vidly.ViewModels.RandomMovieViewModel
+
+@{
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h2>Customers</h2>
+
+@if (Model.Customers.Count == 0)
+{
+    <text>We don't have any customers yet.</text>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr class="table-active">
+                <th scope="col">Customer</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model.Customers)
+            {
+                <tr class="table-secondary">
+                    <td>
+                        @Html.ActionLink(@customer.Name, "Details", "Customers", new { id = @customer.Id }, null)
+                        
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
